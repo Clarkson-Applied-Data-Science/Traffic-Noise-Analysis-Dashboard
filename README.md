@@ -308,12 +308,16 @@ The `traffic_queries.sql` file lists all queries with comments.
   │   ├── new_data_insertion.ipynb
   ├── sql/
   │   ├── traffic_queries.sql
-  ├── screenshots/
-  │   ├── home_dashboard.png
-  │   ├── daily_dashboard.png
-  │   ├── monthly_dashboard.png
-  │   ├── image_view.png
-  │   ├── database_tables.png
+  ├── images/
+  │   ├── Home.png
+  │   ├── TNA_Day.png
+  │   ├── TNA_Month.png
+  │   ├── View_Image.png
+  │   ├── Relational_Schema.png
+  │   ├── Traffic_Table.png
+  │   ├── Audio_Table.png
+  │   ├── Monthly_Summary.png
+  │   ├── Daily_Summary.png
   ├── logs/
   ├── newdata/
   ```
