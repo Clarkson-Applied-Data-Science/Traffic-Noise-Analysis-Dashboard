@@ -1,7 +1,7 @@
-# Traffic Noise Analysis Capstone
+# Traffic Noise Analysis Dashboard
 
 ## 1. Project Overview
-The Traffic Noise Analysis Capstone is a capstone project designed to analyze urban traffic and noise data, featuring a MySQL database and a Flask-based web dashboard with interactive visualizations of vehicle counts and noise levels (measured in decibels, dBA). By integrating data from traffic cameras and audio sensors, the system provides insights into traffic patterns and environmental noise at urban intersections. The project employs a MySQL database for efficient data storage and a user-friendly web dashboard for exploring data aggregated by day or month, visualizing trends through graphs, and inspecting images associated with high noise levels.
+The Traffic Noise Analysis dashboard is a capstone project designed to analyze urban traffic and noise data, featuring a MySQL database and a Flask-based web dashboard with interactive visualizations of vehicle counts and noise levels (measured in decibels, dBA). By integrating data from traffic cameras and audio sensors, the system provides insights into traffic patterns and environmental noise at urban intersections. The project employs a MySQL database for efficient data storage and a user-friendly web dashboard for exploring data aggregated by day or month, visualizing trends through graphs, and inspecting images associated with high noise levels.
 
 **Objectives**:
 - Develop an efficient system for collecting and storing traffic and audio data.
@@ -16,16 +16,19 @@ The web dashboard is the primary interface for users to interact with traffic an
 1. **Access the Home Page**:
    - Visit `http://localhost:5000/` to access the home page.
    - The interface features navigation links or buttons to the **Daily Analysis** (`/by_day`) or **Monthly Analysis** (`/by_month`) views.
+   ![Alt Text](images/Home.png)
 2. **Daily Analysis**:
    - Navigate to `/by_day`.
    - Select a date from the dropdown menu to view data for that day.
    - Hover over graph data points to inspect vehicle counts and max dBA values.
    - Click image thumbnails in the grid to view details of high-noise events.
+   ![Alt Text](images/TNADay.png)
 3. **Monthly Analysis**:
    - Navigate to `/by_month`.
    - Choose a month (e.g., “April 2025”) from the dropdown menu.
    - Hover over the graph to examine daily vehicle counts and max dBA values.
    - Click image thumbnails for detailed event information.
+   ![Alt Text](images/TNA Month.png)
 4. **Image Details**:
    - From either analysis view, click a thumbnail to access `/view_image/<traffic_id>`.
    - Use controls to resize or download the image as a JPEG.
