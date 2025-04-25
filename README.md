@@ -22,16 +22,17 @@ The web dashboard is the primary interface for users to interact with traffic an
    - Select a date from the dropdown menu to view data for that day.
    - Hover over graph data points to inspect vehicle counts and max dBA values.
    - Click image thumbnails in the grid to view details of high-noise events.
-   ![Alt Text](images/TNADay.png)
+   ![Alt Text](images/TNA_Day.png)
 3. **Monthly Analysis**:
    - Navigate to `/by_month`.
    - Choose a month (e.g., “April 2025”) from the dropdown menu.
    - Hover over the graph to examine daily vehicle counts and max dBA values.
    - Click image thumbnails for detailed event information.
-   ![Alt Text](images/TNA Month.png)
+   ![Alt Text](images/TNA_Month.png)
 4. **Image Details**:
    - From either analysis view, click a thumbnail to access `/view_image/<traffic_id>`.
    - Use controls to resize or download the image as a JPEG.
+   ![Alt Text](images/View_Image.png)
 5. **Dynamic Interaction**:
    - Date or month selections trigger instant graph and summary updates via AJAX, ensuring a seamless experience.
 
@@ -42,7 +43,7 @@ This guide enables users to efficiently explore traffic and noise patterns, leve
 This section outlines the system’s architecture, detailing the components and their interactions to achieve the project’s objectives.
 
 The system operates through a structured pipeline:
-1. **Data Collection**: Initial data is stored in `/Users/ckn/Desktop/Traffic/capstone/logs/`, with new data downloaded to `/Users/ckn/Desktop/Traffic/capstone/newdata/` via FileZilla.
+1. **Data Collection**: Initial data is stored in `logs/`, with new data downloaded to `newdata/` via FileZilla.
 2. **Database Management**: The `initial_data_setup.ipynb` script creates the MySQL database schema and populates it with initial data.
 3. **Data Updates**: The `new_data_insertion.ipynb` script processes new data files, updating the database.
 4. **Visualization**: The Flask application (`app.py`) serves a web dashboard with HTML templates for data analysis and image display.
@@ -247,22 +248,14 @@ def by_day():
 The dashboard offers a rich user experience through:
 - **Home Page (`home.html`)**:
   - A clean interface with navigation links to analysis views.
-  - **Screenshot**:
-    ![Home Dashboard](screenshots/home_dashboard.png)
 - **Daily Analysis (`dashboard_day.html`)**:
   - Plotly graph with bars for max dBA and a line for vehicle counts per 10-minute interval.
   - Date dropdown, vehicle count summary, and clickable image grid (top 100 max dBA).
-  - **Screenshot**:
-    ![Daily Dashboard](screenshots/daily_dashboard.png)
 - **Monthly Analysis (`dashboard_month.html`)**:
   - Plotly graph with daily max dBA bars and vehicle count line.
   - Month dropdown, vehicle count summary, and image grid.
-  - **Screenshot**:
-    ![Monthly Dashboard](screenshots/monthly_dashboard.png)
 - **Image View (`view_image.html`)**:
   - Displays an image with traffic ID, max dBA, and timestamp, plus resize/download controls.
-  - **Screenshot**:
-    ![Image View](screenshots/image_view.png)
 
 **Frontend Features and Improvements**:
 - **Interactivity**: Plotly graphs support zooming, panning, and hovering; AJAX ensures real-time updates.
@@ -272,82 +265,24 @@ The dashboard offers a rich user experience through:
 - **Performance**: Optimized queries and graph rendering for fast load times.
 - **Enhancements**: Improved error messages, faster AJAX updates, sorted dropdowns, and added image controls.
 
-*Instructions for Screenshots*: Save screenshots in `screenshots/`. Update paths with raw GitHub URLs (e.g., `https://raw.githubusercontent.com/<your-username>/Traffic-Noise-Analysis/main/screenshots/home_dashboard.png`).
-
 ## 6. Database Schema
 The MySQL database (`gonuguc_Traffic_Capstone`) includes four tables:
 
 **Relational Schema**:
-```
-TrafficData (
-  traffic_id: INT [PK],
-  cam: VARCHAR(50),
-  probs: FLOAT,
-  cls: INT,
-  dto: DATETIME,
-  save_dto: DATETIME,
-  point_len: INT,
-  intersection_x: INT,
-  intersection_y: INT,
-  box_x1: FLOAT, box_y1: FLOAT, box_x2: FLOAT, box_y2: FLOAT,
-  frame_dto: DATETIME,
-  tid: INT,
-  seq_len: INT,
-  full_img: VARCHAR(500),
-  debug_img: VARCHAR(500)
-)
+![Relational_Schema](images/Relational_Schema.png)
 
-AudioData (
-  audio_id: INT [PK, AUTO_INCREMENT],
-  traffic_id: INT [INDEX],
-  snd_file: VARCHAR(255),
-  snd_lvl: FLOAT,
-  ks: TIME,
-  ke: TIME,
-  kd: INT,
-  dba1-dba30: FLOAT,
-  max_dba: DECIMAL(10,2) [INDEX]
-)
-
-monthly_summary (
-  month: VARCHAR(7) [PK],
-  day: INT [PK],
-  vehicle_count: INT,
-  max_dba: DECIMAL(10,2)
-)
-
-daily_summary (
-  date: DATE [PK],
-  hour: INT [PK],
-  ten_min_interval: INT [PK],
-  vehicle_count: INT,
-  max_dba: DECIMAL(10,2)
-)
-```
-
-**Screenshot**:
-![Database Tables](screenshots/database_tables.png)
-
-*Instructions*: Update with the actual screenshot path.
+### Traffic Data Table
+![Traffic_Data_Table](images/Traffic_Table.png)
+### Audio Data Table
+![Audio Data](images/Audio_Table.png)
+### Monthly Summary Table
+![Monthly Summary Table](images/Monthly_Summary.png)
+### Daily Summary Table
+![Daily Summary Table](images/Daily_Summary.png)
 
 ## 7. SQL Queries
 The `traffic_queries.sql` file lists all queries with comments.
 
-**Example Queries**:
-```sql
--- Vehicle details by traffic_id (traffic_id: INT)
-SELECT a.traffic_id, t.dto, a.max_dba, t.debug_img
-FROM AudioData a
-JOIN TrafficData t ON a.traffic_id = t.traffic_id
-WHERE a.traffic_id = %s;
-
--- Top 5 high dBA values and details (No Arguments)
-SELECT a.traffic_id, t.dto, a.max_dba, t.debug_img
-FROM AudioData a
-JOIN TrafficData t ON a.traffic_id = t.traffic_id
-ORDER BY a.max_dba DESC
-LIMIT 5;
-```
 
 ## 8. Setup and Deployment
 ### Prerequisites
@@ -410,15 +345,3 @@ LIMIT 5;
 
 ## 11. Conclusion
 The Traffic Noise Analysis Capstone delivers a robust system for urban traffic and noise analysis, with an intuitive dashboard and efficient backend. It is well-documented and ready for GitHub deployment, meeting academic standards.
-
-## 12. GitHub Deployment
-1. **Create Repository**:
-   - Name: `Traffic-Noise-Analysis-Capstone`.
-   - Description: `A capstone project for analyzing urban traffic and noise data, featuring a MySQL database and a Flask-based web dashboard with interactive visualizations of vehicle counts and noise levels (dBA).`
-2. **Upload Files**:
-   - Push files as per the structure.
-   - Include `screenshots/`.
-3. **Update Screenshots**:
-   - Replace placeholder paths with raw URLs.
-4. **README**:
-   - Use this file as `README.md` or link to it from a concise `README.md`.
