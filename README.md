@@ -1,7 +1,8 @@
 # Traffic Noise Analysis Dashboard
 
 ## 1. Project Overview
-The Traffic Noise Analysis dashboard is a capstone project designed to analyze urban traffic and noise data, featuring a MySQL database and a Flask-based web dashboard with interactive visualizations of vehicle counts and noise levels (measured in decibels, dBA). By integrating data from traffic cameras and audio sensors, the system provides insights into traffic patterns and environmental noise at urban intersections. The project employs a MySQL database for efficient data storage and a user-friendly web dashboard for exploring data aggregated by day or month, visualizing trends through graphs, and inspecting images associated with high noise levels.
+The Traffic Noise Analysis dashboard is a project designed to analyze urban traffic and noise data, featuring a MySQL database and a Flask-based web dashboard with interactive visualizations of vehicle counts and noise levels (measured in decibels, dBA). By integrating data from traffic cameras and audio sensors, the system provides insights into traffic patterns and environmental noise at urban intersections. The project employs a MySQL database for efficient data storage and a user-friendly web dashboard for exploring data aggregated by day or month, visualizing trends through graphs, and inspecting images associated with high noise levels. Project developed by Chandrakanth Naidu Gonuguntla. The dataset currently includes data from November 2024 to April 2025.
+
 
 **Objectives**:
 - Develop an efficient system for collecting and storing traffic and audio data.
